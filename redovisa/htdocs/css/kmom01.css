@@ -1,0 +1,219 @@
+/*!
+ * Stylesheet for design kmom01.
+ *
+ * This stylesheet is for the oophp course and kmom01. Fill it with style
+ * to style up the website so it is useable.
+ */
+
+/* Hide submenu, leave this to kmom02 */
+.rm-desktop ul {
+    display: none;
+}
+
+/* Hide responsive/mobile menu, leave this to kmom02 */
+.rm-navbar-max {
+    display: none;
+}
+
+html {
+    font-size: 100%;
+}
+
+body {
+    line-height: 1.4;
+    color: #333;
+    background-color: #fffefc;
+}
+
+h1 {
+    font-size: 2.8em;
+    margin-bottom: 3.5rem; /* baseline * 2, för att skapa mer utrymme */
+}
+
+p {
+    font-size: 1.25em;
+    margin-bottom: 1.75rem; /* 1.4 * 1.25em vår baseline */
+}
+
+/* responsitivity */
+@media (min-width: 64em) {
+    html {
+        font-size: 112.5%;
+    }
+}
+
+.site-logo {
+    display: none;
+}
+
+.region-header {
+    width: 100%;
+}
+
+.region-header-col-1 {
+    width: 100px;
+    height: 50px;
+    float: left;
+    overflow: auto;
+}
+
+/*
+.site-logo-text {
+    padding: 2em;
+    float: left;
+    overflow: auto;
+} */
+.region-header-col-2 {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+/* style for navbar */
+.my-navbar li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 1em;
+    border: solid black 1px;
+    color: black;
+}
+
+
+/* style for main */
+.outer-wrap-main {
+    background-color: #fffefc;
+}
+
+.inner-wrap-main {
+    margin: auto;
+    width: 960px;
+}
+
+/* style to center flash image (dandelion) */
+.region-flash img {
+    margin: auto;
+    display: block;
+}
+
+/* style for row including clear fix */
+.row::after {
+    content: "";
+    display: inline-block;
+    clear: both;
+}
+
+/* includes article and wrap sidebar / to display aligned */
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .region-breadcrumb {
+    float: left;
+    text-align: left;
+}
+.breadcrumb-list li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.breadcrumb-list li a {
+    text-decoration: none;
+    float: left;
+    text-align: left;
+} */
+
+.next {
+    float: right;
+    text-align: right;
+    width: 50%;
+}
+
+.article {
+    float: left;
+    width: auto;
+    clear: both;
+    margin-right: 10em;
+}
+
+.block-toc {
+    padding-right: 5em;
+    float: top;
+}
+
+.wrap-sidebar {
+    float: top;
+    width: 400px;
+    clear: both;
+}
+
+/* style for portrait */
+.figure {
+    float: left;
+    width: 300px;
+    clear: both;
+}
+
+figcaption {
+    font-size: small;
+    font-style: italic;
+}
+
+/* Style for byline */
+.site-byline {
+    float: left;
+    border: 1px solid black;
+    padding: 5px;
+    clear: both;
+    margin-top: 5em;
+    overflow: auto;
+}
+
+.byline-pic {
+    float: left;
+    margin: 5px;
+}
+
+.outer-wrap-footer {
+    background-color: #ccc9c3;
+    margin-top: 10em;
+}
+
+.inner-wrap-footer {
+    margin: auto;
+    width: 960px;
+    height: 350px;
+}
+
+.footer-column-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.footer-column {
+    width: 250px;
+    height: 200px;
+    padding: 20px;
+}
+
+.block.site-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: small;
+    height: 120px;
+    text-align: center;
+}
