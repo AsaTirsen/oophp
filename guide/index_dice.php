@@ -1,41 +1,41 @@
 <?php
-
+namespace Asti\Dice;
 /*
  *GET version of guess my number
  */
 
-require(__DIR__ . "/autoload.php");
+require(__DIR__ . "/autoload_namespace.php");
 require(__DIR__ . "/config.php");
 require(__DIR__ . "/src/Dice/Dice.php");
-require(__DIR__ . "/index_session_dice.php");
 
 //$res []= $dice->diceRolls();
 
+$dice = new Dice();
 $counter = 1;
 $diceArray = array();
 $resArray = array();
-$res;
-while($counter <= 6) {
-    $res = $dice->diceRolls();
-    $resArray = array_push($diceArray, $res);
+while ($counter <= 6) {
+    $res = $dice->roll();
+    array_push($diceArray, $res);
     $counter++;
-} var_dump($resArray);
+}
 
+foreach ($diceArray as $key => $res) {
+    $key = $key+1;
+    print_r("<li>$key . $res</li><br>");
+}
+$arraySum = array_sum($diceArray);
+
+print_r("<p>Summan är: $arraySum<br></p>");
+
+$arrayAve = array_sum($diceArray)/count($diceArray);
+
+$roundAve = round($arrayAve, 2);
+
+print_r ("<p>Medelvärdet är: $roundAve</p>");
 
 ?>
-/*
-* Render the page in HTML
-*/
 
-
-
-<h1>Let's get a number </h1>
-<p>Empty paragraph.</p>
-    <ol>
-    <li>yikes</li>
-    <li>Tea</li>
-    <li>Milk</li>
-</ol>
 
 
 

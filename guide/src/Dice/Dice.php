@@ -1,25 +1,32 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: asa
- * Date: 23/4/19
- * Time: 11:34 AM
- */
+namespace Asti\Dice;
 
 class Dice {
 
-    public $diceNumber;
-    public $noRolls;
+    private $value;
 
-
-
-    public function __construct()
+    public function __construct(int $sides = 6)
     {
-        $this->diceRolls();
+        $this->sides = $sides;
     }
 
-    public function diceRolls() {
-        $this->diceNumber= rand(1, 6);
-        return $this->diceNumber;
+    public function value()
+    {
+        return $this->value;
     }
+
+    public function roll() {
+        $this->value = rand(1, 6);
+        return $this->value;
+    }
+
+    public function getLastRoll()
+    {
+        $lastRoll = $this->roll();
+        return $lastRoll;
+    }
+
 }
+
+
+
