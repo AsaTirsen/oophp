@@ -3,27 +3,21 @@ namespace Asti\Dice;
 
 class Dice {
 
-    private $value;
+    private $lastRoll;
 
     public function __construct(int $sides = 6)
     {
         $this->sides = $sides;
     }
 
-    public function value()
+    public function getLastRoll()
     {
-        return $this->value;
+        return $this->lastRoll;
     }
 
     public function roll() {
-        $this->value = rand(1, 6);
-        return $this->value;
-    }
-
-    public function getLastRoll()
-    {
-        $lastRoll = $this->roll();
-        return $lastRoll;
+        $this->lastRoll = rand(1, 6);
+        return $this->lastRoll;
     }
 
 }

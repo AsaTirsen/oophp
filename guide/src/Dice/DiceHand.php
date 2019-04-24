@@ -51,7 +51,7 @@ class DiceHand
     {
         $values = [];
         foreach ($this->dices as $dice) {
-            $values[] = $dice->value();
+            $values[] = $dice->getLastRoll();
         } return $values;
     }
 
@@ -64,7 +64,7 @@ class DiceHand
     {
         $values = [];
         foreach ($this->dices as $dice) {
-            $values[] = $dice->value();
+            $values[] = $dice->getLastRoll();
         } $valuesSum = array_sum($values);
         return $valuesSum;
     }
@@ -78,7 +78,7 @@ class DiceHand
     {
         $values = [];
         foreach ($this->dices as $dice) {
-            $values[] = $dice->value();
+            $values[] = $dice->getLastRoll();
         } $valuesSum = array_sum($values);
         return $valuesSum/count($values);
     }
