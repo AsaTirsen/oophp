@@ -47,6 +47,7 @@ class ComposerStaticInit3fdcf5b3c8fcea9529c874bd1387e971
         ),
         'A' => 
         array (
+            'Asatir\\' => 7,
             'Anax\\' => 5,
         ),
     );
@@ -89,6 +90,10 @@ class ComposerStaticInit3fdcf5b3c8fcea9529c874bd1387e971
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
+        ),
+        'Asatir\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'Anax\\' => 
         array (
