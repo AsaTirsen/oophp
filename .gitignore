@@ -3,4 +3,7 @@
 /vendor
 memory::
 composer.lock
+<<<<<<< HEAD
 .DS_Store
+=======
+>>>>>>> first commmit after refactor
