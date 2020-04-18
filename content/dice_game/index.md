@@ -1,7 +1,7 @@
 
-Här kan du spela "Gissa mitt nummer!"
+Här kan du spela "Tärningsspel 100!"
 ===========
 
-Välkommen till spelet gissa mitt nummer
+Välkommen till tärningsspel
 
 [Starta ett nytt spel!](dice/init)

@@ -59,9 +59,14 @@ return [
             "title" => "Anax development utilities",
         ],
         [
-            "text" => "Guessing game",
+            "text" => "Spela gissa numret",
             "url" => "guess_game",
-            "title" => "Spela spelet gissa numret",
+            "title" => "Guess game",
+        ],
+        [
+            "text" => "Tärningsspel 100",
+            "url" => "dice_game",
+            "title" => "Dice game",
         ],
     ],
 ];

@@ -12,27 +12,23 @@ class DiceHand
      * @var int $values Array consisting of last roll of the dices.
      */
     private $dices;
-    private $values;
 
     /**
      * Constructor to initiate the dicehand with a number of dices.
      *
      * @param int $dices Number of dices to create, defaults to five.
      */
-    public function __construct(int $dices = 5)
+    public function __construct(int $dices = 3)
     {
         $this->dices = [];
-        $this->values = [];
 
         for ($i = 0; $i < $dices; $i++) {
             $this->dices[$i] = new Dice();
-            $this->values[$i] = null;
         }
     }
 
     /**
      * Roll all dices save their value.
-     *
      * @return void.
      */
     public function roll()
@@ -52,7 +48,8 @@ class DiceHand
         $values = [];
         foreach ($this->dices as $dice) {
             $values[] = $dice->getLastRoll();
-        } return $values;
+        }
+        return $values;
     }
 
     /**
@@ -65,21 +62,38 @@ class DiceHand
         $values = [];
         foreach ($this->dices as $dice) {
             $values[] = $dice->getLastRoll();
-        } $valuesSum = array_sum($values);
+            $valuesSum = array_sum($values);
+        }
         return $valuesSum;
     }
 
-    /**
-     * Get the average of all dices.
-     *
-     * @return float as the average of all dices.
-     */
-    public function average()
+
+    public function diceRepresentation()
     {
-        $values = [];
         foreach ($this->dices as $dice) {
-            $values[] = $dice->getLastRoll();
-        } $valuesSum = array_sum($values);
-        return $valuesSum/count($values);
+            $representation = $dice->graphic();
+        }
+        return $representation;
+    }
+
+    public function checkIfOne()
+    {
+        $nonSavableScore = false;
+        foreach ($this->dices as $dice) {
+            if ($dice->getLastRoll() == 1) {
+                $nonSavableScore = true;
+            }
+        }
+        return $nonSavableScore;
+    }
+
+    /**
+     * Override the dice roll for testing.
+     * @param int $diceIndex
+     * @param int $roll
+     */
+    public function fakeRoll(int $diceIndex, int $roll)
+    {
+        $this->dices[$diceIndex]->fakeRoll($roll);
     }
 }

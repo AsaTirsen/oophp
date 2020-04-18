@@ -1,13 +1,29 @@
 <?php
 namespace Anax\View;
 
+/**
+ * Throw some graphic dices.
+ */
 
-?><!doctype html>
-<meta charset="utf-8">
-<title>Dice game</title>
+?><h1>Spela tärning</h1>
+<p>Slå tärningen. Om du får en etta förlorar du alla poäng. Om du inte får en etta kan du välja att spara eller
+    slå igen...</p>
 
-<h1>Rolling a dicehand with five dices</h1>
+<form method="post">
+    <input type="submit" name="roll" value="Roll the dice">
+    <input type="submit" name="save" value="Save your roll"/>
+    <input type="submit" name="reset" value="Reset">
+</form>
+<p>Rolling dice for <?= $game->activePlayer() ?></p>
 
-<p><?= implode(", ", $hand->values()) ?></p>
-<p>Sum is: <?= $hand->sum() ?>.</p>
-<p>Average is: <?= $hand->average() ?>.</p>
+<p>Result is: <?= var_dump($game->computerPlayer()->values()) ?></p>
+
+<p class="dice-utf8">
+    <?php
+    $class = [];
+    foreach ($class as $value) : ?>
+        <i class="dice-sprite <?= $value ?>"></i>
+    <?php endforeach; ?>
+</p>
+<p>Sum is: .</p>
+
