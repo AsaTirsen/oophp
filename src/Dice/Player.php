@@ -7,10 +7,17 @@ namespace Asatir\Dice;
  **/
 class Player
 {
+    /**
+     * @var DiceHand
+     */
     private $diceHand;
     private $savedScore;
     private $turnScore;
 
+    /**
+     * Player constructor.
+     * Initiates new instance of DiceHand() and score variables to 0
+     */
     public function __construct()
     {
         $this->diceHand = new DiceHand();
@@ -18,15 +25,32 @@ class Player
         $this->turnScore = 0;
     }
 
-    public function turnScore() {
+    /**
+     * Returns turnscore (score for current turn)
+     * @return int
+     */
+    public function turnScore()
+    {
         return $this->turnScore;
     }
 
-    public function savedScore() {
+    /**
+     * @return int
+     */
+    public function savedScore()
+    {
         return $this->savedScore;
     }
 
-    public function roll(int $roll1 = 0, int $roll2 = 0, int $roll3 = 0) {
+    /**
+     * Calls in dicehand roll. Contains fakeroll for testing purposes. Sets turnscore to 0 if
+     * dicehand contains a 1, otherwise sums the score for each dicehand in turn
+     * @param int $roll1
+     * @param int $roll2
+     * @param int $roll3
+     */
+    public function roll(int $roll1 = 0, int $roll2 = 0, int $roll3 = 0)
+    {
         $this->diceHand->roll();
         // Handle fake rolls for testing purposes
         if ($roll1 != 0) {
@@ -46,8 +70,32 @@ class Player
         }
     }
 
-    public function saveTurn() {
+    /**
+     * @return DiceHand
+     */
+    public function diceHand()
+    {
+        return $this->diceHand;
+    }
+
+    /**
+     *
+     */
+    public function saveTurn()
+    {
         $this->savedScore += $this->turnScore;
         $this->turnScore = 0;
+    }
+
+    /**
+     * Returns true if a player gets more than 100 points
+     * @return bool
+     */
+    public function winner()
+    {
+        $winner = false;
+        if ($this->savedScore >= 100) {
+            $winner = true;
+        } return $winner;
     }
 }

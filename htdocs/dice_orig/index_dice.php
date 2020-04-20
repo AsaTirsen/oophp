@@ -1,5 +1,6 @@
 <?php
 namespace Asti\Dice;
+
 /*
  *GET version of guess my number
  */
@@ -13,7 +14,7 @@ require(__DIR__ . "/src/Dice.php");
 $dice = new Dice();
 $counter = 1;
 $diceArray = array();
-$resArray = array();
+
 while ($counter <= 6) {
     $res = $dice->roll();
     array_push($diceArray, $res);
@@ -32,10 +33,4 @@ $arrayAve = array_sum($diceArray)/count($diceArray);
 
 $roundAve = round($arrayAve, 2);
 
-print_r ("<p>Medelvärdet är: $roundAve</p>");
-
-?>
-
-
-
-
+print_r("<p>Medelvärdet är: $roundAve</p>");

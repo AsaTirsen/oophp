@@ -39,18 +39,14 @@ class DiceHand
     }
 
     /**
-     * Get values of dices from last roll.
-     *
-     * @return array with values of the last roll.
+     * function dices returns an array of numbers, values of dicefaces
+     * @return array
      */
-    public function values()
+    public function dices()
     {
-        $values = [];
-        foreach ($this->dices as $dice) {
-            $values[] = $dice->getLastRoll();
-        }
-        return $values;
+        return $this->dices;
     }
+
 
     /**
      * Get the sum of all dices.
@@ -67,15 +63,10 @@ class DiceHand
         return $valuesSum;
     }
 
-
-    public function diceRepresentation()
-    {
-        foreach ($this->dices as $dice) {
-            $representation = $dice->graphic();
-        }
-        return $representation;
-    }
-
+    /**
+     * Checks if dicehand contains a 1
+     * @return bool
+     */
     public function checkIfOne()
     {
         $nonSavableScore = false;

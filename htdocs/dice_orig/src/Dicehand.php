@@ -52,7 +52,8 @@ class DiceHand
         $values = [];
         foreach ($this->dices as $dice) {
             $values[] = $dice->getLastRoll();
-        } return $values;
+        }
+        return $values;
     }
 
     /**
@@ -69,17 +70,10 @@ class DiceHand
         }
         if (in_array(1, $values) == false) {
             $valuesSum = array_sum($values);
-        return $valuesSum;
+            return $valuesSum;
+        } else {
+            return "Du slog en etta och förlorade dina poäng";
         }
-        else {
-           return "Du slog en etta och förlorade dina poäng";
-        }
-    }
-
-
-    public function sumRound()
-    {
-
     }
 
     /**
@@ -92,7 +86,8 @@ class DiceHand
         $values = [];
         foreach ($this->dices as $dice) {
             $values[] = $dice->getLastRoll();
-        } $valuesSum = array_sum($values);
-        return $valuesSum/count($values);
+        }
+        $valuesSum = array_sum($values);
+        return $valuesSum / count($values);
     }
 }

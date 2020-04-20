@@ -8,23 +8,21 @@ namespace Asti\Dice;
 class Player
 {
 
-    public $notSafeScore;
-
-    private $savedScore;
-
-    function __construct()
-    {
-       for($i= 0; $i<10; $i++) {
-           $dicehand = new Dicehand();
-           $this->notSafeScore += $dicehand->sum();
-       }return $this->notSafeScore;
-    }
+//    public $notSafeScore;
+//
+//    function __construct()
+//    {
+//        for ($i = 0; $i < 10; $i++) {
+//            $dicehand = new Dicehand();
+//            $this->notSafeScore += $dicehand->sum();
+//        }
+//        return $this->notSafeScore;
+//    }
 
 
     /*
     * Method savedScore to call dicehand to store players' saved scores
     */
-
 
 
     /*

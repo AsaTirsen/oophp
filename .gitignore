@@ -3,6 +3,8 @@
 /vendor
 memory::
 composer.lock
+
+doc/
 <<<<<<< HEAD
 .DS_Store
 =======

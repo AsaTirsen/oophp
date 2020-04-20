@@ -1,8 +1,8 @@
 <?php
 namespace Asti\Dice;
 
-class Dice {
-
+class Dice
+{
     private $lastRoll;
 
     public function __construct(int $sides = 6)
@@ -15,11 +15,9 @@ class Dice {
         return $this->lastRoll;
     }
 
-    public function roll() {
+    public function roll()
+    {
         $this->lastRoll = rand(1, 6);
         return $this->lastRoll;
     }
-
 }
-
-

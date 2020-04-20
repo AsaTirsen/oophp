@@ -1,29 +1,56 @@
-<?php
+<?php /** @noinspection PhpUndefinedVariableInspection */
 namespace Anax\View;
 
-/**
- * Throw some graphic dices.
- */
+?>
 
-?><h1>Spela tärning</h1>
+<h1>Spela tärning</h1>
 <p>Slå tärningen. Om du får en etta förlorar du alla poäng. Om du inte får en etta kan du välja att spara eller
     slå igen...</p>
+<?php
+if ($game->humanPlayer()->winner()) : ?>
+    <p>The human won!</p>
+    <?php
+elseif ($game->computerPlayer()->winner()) : ?>
+    <p>The computer won!</p>
+    <?php
+elseif ($game->humanTurn()) :
+    ?>
+    <form method="post">
+        <input type="submit" name="humanroll" value="Roll for human">
+        <input type="submit" name="save" value="Save your roll"/><br>
+        <input type="submit" name="reset" value="Reset">
+    </form>
+    <?php
+else :
+    ?>
+    <form method="post">
+        <input type="submit" name="computerroll" value="Roll for computer"><br>
+        <input type="submit" name="reset" value="Reset">
+    </form>
+<?php endif; ?>
 
-<form method="post">
-    <input type="submit" name="roll" value="Roll the dice">
-    <input type="submit" name="save" value="Save your roll"/>
-    <input type="submit" name="reset" value="Reset">
-</form>
-<p>Rolling dice for <?= $game->activePlayer() ?></p>
-
-<p>Result is: <?= var_dump($game->computerPlayer()->values()) ?></p>
-
+<p>Human's dice</p>
 <p class="dice-utf8">
     <?php
-    $class = [];
-    foreach ($class as $value) : ?>
-        <i class="dice-sprite <?= $value ?>"></i>
+    foreach ($game->humanPlayer()->diceHand()->dices() as $dice) :
+        ?>
+        <i class="dice-sprite <?= $dice->graphic() ?>"></i>
+    <?php endforeach;
+    ?>
+<p>Computer's dice</p>
+<p class="dice-utf8">
+    <?php
+    foreach ($game->computerPlayer()->diceHand()->dices() as $dice) :
+        ?>
+        <i class="dice-sprite <?= $dice->graphic() ?>"></i>
     <?php endforeach; ?>
-</p>
-<p>Sum is: .</p>
+
+
+<p>Result of this turn for human player: <?= $game->humanPlayer()->turnScore() ?></p>
+<p>Total result human player: <?= $game->humanPlayer()->savedScore() ?></p>
+<p>Total result computer player: <?= $game->computerPlayer()->savedScore() ?></p>
+
+
+
+
 
