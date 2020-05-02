@@ -23,7 +23,7 @@ class DiceHand
         $this->dices = [];
 
         for ($i = 0; $i < $dices; $i++) {
-            $this->dices[$i] = new Dice();
+            $this->dices[$i] = new DiceHistogram2();
         }
     }
 

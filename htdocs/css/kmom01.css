@@ -17,12 +17,15 @@
 
 html {
     font-size: 100%;
+    height: 100%;
 }
 
 body {
     line-height: 1.4;
     color: #333;
     background-color: #fffefc;
+    position: relative;
+    min-height: 100%;
 }
 
 h1 {
@@ -185,13 +188,16 @@ figcaption {
 
 .outer-wrap-footer {
     background-color: #ccc9c3;
-    margin-top: 10em;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20rem;
 }
 
 .inner-wrap-footer {
     margin: auto;
     width: 960px;
-    height: 350px;
+    height: 10%;
 }
 
 .footer-column-wrapper {
@@ -199,12 +205,11 @@ figcaption {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding-bottom: 10px;
 }
 
 .footer-column {
     width: 250px;
-    height: 200px;
+    height: 10%;
     padding: 20px;
 }
 
@@ -214,7 +219,7 @@ figcaption {
     align-items: center;
     justify-content: center;
     font-size: small;
-    height: 120px;
+    height: 80px;
     text-align: center;
 }
 

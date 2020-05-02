@@ -26,6 +26,14 @@ class Game
         $this->humanTurn = true;
     }
 
+//    /**
+//     * @return Histogram
+//     */
+//    public function histogram(): Histogram
+//    {
+//        return $this->histogram;
+//    }
+
     /**
      * @return Player
      */
@@ -65,7 +73,7 @@ class Game
     {
         $this->humanPlayer->roll($roll1, $roll2, $roll3);
         if ($this->humanPlayer->diceHand()->checkIfOne()) {
-            $this->humanSave();
+            $this->humanTurn = false;
         }
     }
 
