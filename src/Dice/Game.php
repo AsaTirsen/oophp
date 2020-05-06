@@ -86,9 +86,36 @@ class Game
      */
     public function computerRoll(int $roll1 = 0, int $roll2 = 0, int $roll3 = 0)
     {
+        $computerScore = $this->computerPlayer->savedScore() + $this->computerPlayer->turnScore();
+        $humanScore = $this->humanPlayer->savedScore();
+        $checkIfOne = $this->computerPlayer->diceHand()->checkIfOne();
         $this->computerPlayer->roll($roll1, $roll2, $roll3);
+        if ($this->scoreComparison($computerScore, $humanScore) && !$checkIfOne) {
+            $this->computerPlayer->roll($roll1, $roll2, $roll3);
+        }
         $this->computerPlayer->saveTurn();
         $this->humanTurn = true;
+    }
+
+    public function scoreComparison($computerScore, $humanScore)
+    {
+        $underDog = false;
+        if ((100-$computerScore > 30) && (100-$humanScore < 30)) {
+            $underDog = true;
+        } elseif ($computerScore / $humanScore < 0.7) {
+            $underDog = true;
+        }
+        return $underDog;
+    }
+
+    public function fakeHumanSavedTurn(int $score)
+    {
+        return $score;
+    }
+
+    public function fakeComputerTurnScore(int $score)
+    {
+        return $score;
     }
 
     /**

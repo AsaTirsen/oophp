@@ -18,8 +18,7 @@ class Histogram
 
     public function injectData(HistogramInterface $object)
     {
-        // TODO sum up
-        foreach($object->getHistogramSeries() as $value) {
+        foreach ($object->getHistogramSeries() as $value) {
             array_push($this->series, $value);
         }
         $this->min   = $object->getHistogramMin();
@@ -53,8 +52,9 @@ class Histogram
 
         $count = array_count_values($series);
 
-        foreach ($count as $key => $value)
+        foreach ($count as $key => $value) {
             array_push($histogram, $key . ': ' . str_repeat($asterisk, $value));
+        }
         if ($this->min !== null && $this->max !== null) {
             foreach ($rangeArray as $val) {
                 if (!in_array($val, $histogram)) {
@@ -62,7 +62,10 @@ class Histogram
                 }
             }
         }
-        asort($histogram);;
-        return implode("<br>", $histogram);
+        asort($histogram);
+        return implode(
+            "<br>",
+            $histogram
+        );
     }
 }

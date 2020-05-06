@@ -7,6 +7,7 @@ namespace Asatir\Dice;
 class Dice
 {
     private $lastRoll;
+    protected $sides;
 
     /**
      * Constructor to initiate the object with values of dice 1-6
@@ -53,5 +54,6 @@ class Dice
     public function fakeRoll(int $roll)
     {
         $this->lastRoll = $roll;
+        return $this->lastRoll;
     }
 }

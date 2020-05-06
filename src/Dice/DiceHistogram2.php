@@ -32,4 +32,10 @@ class DiceHistogram2 extends Dice implements HistogramInterface
         $this->series[] = parent::roll();
         return $this->getLastRoll();
     }
+
+    public function fakeRoll(int $roll)
+    {
+        $this->series[] = parent::fakeRoll($roll);
+        return $this->getLastRoll();
+    }
 }

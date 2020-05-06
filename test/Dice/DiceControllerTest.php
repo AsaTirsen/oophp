@@ -34,6 +34,7 @@ class DiceControllerTest extends TestCase
 
         // Create and initiate the controller
         $this->controller = new DiceController();
+        $this->game = new Game();
         //inject $app into controller, gets to session, post objects
         $this->controller->setApp($app);
         //$this->controller->initialize();
@@ -75,13 +76,12 @@ class DiceControllerTest extends TestCase
     {
         $this->app->request->setGlobals([
             "post" => [
-                "humanroll" => [2,3,5]
+                "humanroll" => [2, 3, 5],
             ]
         ]);
         $res = $this->controller->playActionPost();
         $this->assertInstanceOf(ResponseUtility::class, $res);
     }
-
 
 //
 //

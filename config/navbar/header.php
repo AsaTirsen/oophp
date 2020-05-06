@@ -68,5 +68,10 @@ return [
             "url" => "dice_game",
             "title" => "Dice game",
         ],
+        [
+            "text" => "Filmdatabas",
+            "url" => "movie",
+            "title" => "movieDB",
+        ],
     ],
 ];

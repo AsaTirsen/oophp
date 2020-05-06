@@ -9,9 +9,15 @@ namespace Anax\View;
 <?php
 if ($game->humanPlayer()->winner()) : ?>
     <p>The human won!</p>
+    <form method="post">
+        <input type="submit" name="reset" value="Play again">
+    </form>
     <?php
 elseif ($game->computerPlayer()->winner()) : ?>
     <p>The computer won!</p>
+    <form method="post">
+        <input type="submit" name="reset" value="Play again">
+    </form>
     <?php
 elseif ($game->humanTurn()) :
     ?>
@@ -55,7 +61,7 @@ else :
 
 ?><h3>A histogram</h3>
 <p>
-    <?=$histogram->getAsAsterisk()?>
+    <?=$histogram->getAsAsterisk()?><br><br>
 </p>
 
 
