@@ -12,6 +12,8 @@ namespace Anax\View;
 if (!$resultset) {
     return;
 }
+
+require "header.php";
 ?><table>
     <tr class="first">
         <th>Rad</th>
@@ -31,3 +33,5 @@ if (!$resultset) {
         </tr>
     <?php endforeach; ?>
 </table>
+
+<!--require "footer.php";-->

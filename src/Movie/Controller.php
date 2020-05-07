@@ -1,4 +1,5 @@
 <?php
+
 namespace Asatir\Movie;
 
 use Anax\Commons\AppInjectableInterface;
@@ -21,35 +22,68 @@ class Controller implements AppInjectableInterface
 {
     use AppInjectableTrait;
 
-     public function initDatabase(): object
-        {
-            $response = $this->app->response;
-            $title = "Movie database | oophp";
-            $app->router->get("movie", function () use ($app) {
-                $app->db->connect();
-                $res = $app->db->executeFetchAll($sql);
-            }
+    public $view = [];
 
-            $app->db->connect();
-            //$session = $this->app->session;
-            $movie = new SqlSearch();
-            $sql = $movie->getAllFromTable("movie");
-            //$session->set("game", $game);
-            return $response->redirect("movie/index");
+
+    public function indexAction(): object
+    {
+        // Deal with the action and return a response.
+        $title = "Movie database | oophp";
+
+        $this->app->db->connect();
+        $movie = new MovieRepository();
+        $movie->setApp($this->app);
+        $route = $this->app->request->getGet("route");
+
+        switch ($route) {
+            case "":
+                $data["resultset"] = $movie->getAllFromTable();
+                $this->app->view->add("movie/index", $data);
+                return $this->app->page->render($data);
+                break;
+
+            case "search-title":
+                $searchTitle = $this->app->request->getGet("searchTitle");
+                if (!$searchTitle) {
+                    $this->app->page->add("movie/search-title", []);
+                    return $this->app->page->render(["movie/search-title" => []]);
+                } elseif ($searchTitle) {
+                    $data["resultset"] = $movie->searchTitle($searchTitle);
+                    $this->app->page->add("movie/index", $data);
+                    return $this->app->page->render($data);
+                }
+                break;
+
+            case "reset":
+                $data["resultset"] = $movie->getAllFromTable();
+                $this->app->view->add("movie/index", $data);
+                break;
+
+            case "search-year":
+                $data["resultset"] = $movie->getAllFromTable();
+                $this->app->view->add("movie/index", $data);
+                break;
+
+            case "movie-select":
+                $data["resultset"] = $movie->getAllFromTable();
+                $this->app->view->add("movie/index", $data);
+                break;
+
+            case "movie-edit":
+                $data["resultset"] = $movie->getAllFromTable();
+                $this->app->view->add("movie/index", $data);
+                break;
+
+            case "show-all-sort":
+                $data["resultset"] = $movie->getAllFromTable();
+                $this->app->view->add("movie/index", $data);
+                break;
+
+            case "show-all-paginate":
+                $data["resultset"] = $movie->getAllFromTable();
+                $this->app->view->add("movie/index", $data);
+                break;
         }
-
-}
-
-$app->router->get("movie", function () use ($app) {
-    $title = "Movie database | oophp";
-
-    $app->db->connect();
-    $sql = "SELECT * FROM movie;";
-    $res = $app->db->executeFetchAll($sql);
-
-    $data["resultset"] = $res;
-
-    $app->view->add("movie/index", $data);
-
-    $app->page->render($data);
-});
+            //return $this->app->page->render($data);
+        }
+    }
