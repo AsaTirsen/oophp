@@ -1,4 +1,4 @@
-<form method="post">
+<form method="post" action="movie/movieselect">
     <fieldset>
     <legend>Select Movie</legend>
 

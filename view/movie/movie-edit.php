@@ -1,21 +1,21 @@
-<form method="post">
+<form method="post" action="movie/movieedit">
     <fieldset>
     <legend>Edit</legend>
     <input type="hidden" name="movieId" value="<?= $movie->id ?>"/>
 
     <p>
-        <label>Title:<br> 
+        <label>Title:<br>
         <input type="text" name="movieTitle" value="<?= $movie->title ?>"/>
         </label>
     </p>
 
     <p>
-        <label>Year:<br> 
+        <label>Year:<br>
         <input type="number" name="movieYear" value="<?= $movie->year ?>"/>
     </p>
 
     <p>
-        <label>Image:<br> 
+        <label>Image:<br>
         <input type="text" name="movieImage" value="<?= $movie->image ?>"/>
         </label>
     </p>

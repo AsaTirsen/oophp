@@ -1,6 +1,7 @@
 <?php
 
 namespace Anax\View;
+
 ?>
 <!doctype html>
 <html lang="en">
