@@ -1,0 +1,30 @@
+<?php
+
+namespace Anax\View;
+//
+//
+////Include essentials
+//require __DIR__ . "../../src/TextFilter/config.php";
+//require __DIR__ . "../../src/TextFilter/src/MyTextFilter.php";
+
+
+//$filter = new MyTextFilter();
+//$text = file_get_contents(__DIR__ . "/../text/bbcode.txt");
+//$html = $textFilter->parse($text, ["bbcode"]);
+
+
+?><!doctype html>
+<html>
+<meta charset="utf-8">
+<title>Show off BBCode</title>
+
+<h1>Showing off BBCode</h1>
+
+<h2>Source in bbcode.txt</h2>
+<pre><?= wordwrap(htmlentities($text)) ?></pre>
+
+<h2>Filter BBCode applied, source</h2>
+<pre><?= wordwrap(htmlentities($html)) ?></pre>
+
+<h2>Filter BBCode applied, HTML (including nl2br())</h2>
+<?= nl2br($html) ?>

@@ -60,6 +60,7 @@ class Controller implements AppInjectableInterface
                 $movieId = $request->getGet("movieId");
                 $data["movie"] = $movie->selectMovie($movieId);
                 $this->app->page->add("movie/movie-edit", $data);
+                var_dump($data);
                 return $this->app->page->render();
 
             case "movie-add":
