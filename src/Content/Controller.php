@@ -5,6 +5,7 @@ namespace Asatir\Content;
 use Anax\Commons\AppInjectableInterface;
 use Anax\Commons\AppInjectableTrait;
 use Asatir\Content\Repository;
+use Asatir\TextFilter\src\MyTextFilter;
 use function Anax\View\url;
 
 
@@ -41,17 +42,6 @@ class Controller implements AppInjectableInterface
 //        $this->content->setApp($this->app);
 //        $this->route = $this->app->request->getGet("route");    }
 
-    function getPost($key, $default = null)
-    {
-        if (is_array($key)) {
-            // $key = array_flip($key);
-            // return array_replace($key, array_intersect_key($_POST, $key));
-            foreach ($key as $val) {
-                $post[$val] = getPost($val);
-            }
-            return $post;
-        }
-    }
     public function indexAction(): object
     {
         $view = $this->app->view;
@@ -60,6 +50,7 @@ class Controller implements AppInjectableInterface
         $content = new Repository();
         $content->setApp($this->app);
         $route = $this->app->request->getGet("route");
+        $textfilter = new MyTextFilter();
         switch ($route) {
             case "":
                 $title = "Show all content";
@@ -98,7 +89,7 @@ class Controller implements AppInjectableInterface
                 $data = [
                     "title" => $title,
                     "content" => $content->selectId($id),
-                    ];
+                ];
                 var_dump($data);
                 $view->add("content_management/header", []);
                 $view->add("content_management/delete", $data);
@@ -129,6 +120,9 @@ class Controller implements AppInjectableInterface
                     "title" => $title,
                     "resultset" => $resultset
                 ];
+                if (!empty($resultset->filter)) {
+                    print_r($resultset->data);
+                }
                 $view->add("content_management/header", []);
                 $view->add("content_management/pages", $data);
                 return $render->render($data);
@@ -166,6 +160,15 @@ class Controller implements AppInjectableInterface
                     return $render->render($data);
                 } else {
                     $viewcontent = $content->getPageContent($route);
+                    //var_dump($viewcontent->data);
+                    // $filter = array_values((array)$content->getFilter($route));
+                    $filter = $viewcontent->filter;
+
+                    //$filter = implode($filter);
+                    //var_dump($filter);
+                    $filter = explode(",", $filter);
+
+                    $rendered = $textfilter->parse($viewcontent->data, $filter);
                     if (!$viewcontent) {
                         $data = [
                             $title = "404",
@@ -177,8 +180,11 @@ class Controller implements AppInjectableInterface
                     $title = "page content";
                     $data = [
                         "title" => $title,
-                        "content" => $viewcontent
+                        "content" => $viewcontent,
+                        "rendered" => $rendered
                     ];
+                    //var_dump($rendered);
+
                     $view->add("content_management/header", []);
                     $view->add("content_management/page", $data);
                     return $render->render($data);
@@ -252,9 +258,9 @@ class Controller implements AppInjectableInterface
         $request = $this->app->request;
         $content = new Repository();
         $content->setApp($this->app);
-        if($request->getPost("doCreate")) {
+        if ($request->getPost("doCreate")) {
             if (!isset($title)) {
-                print_r ("Enter a title");
+                print_r("Enter a title");
             }
             $title = $request->getPost("contentTitle");
             $contentId = implode((array)$content->create($title));
@@ -270,8 +276,7 @@ class Controller implements AppInjectableInterface
         $request = $this->app->request;
         $content = new Repository();
         $content->setApp($this->app);
-        if($request->getPost("doReset")) {
-            error_log(print_r('reset'));
+        if ($request->getPost("doReset")) {
             $content->resetDatabase();
             return $this->app->response->redirect("content_management?route=");
         } else {

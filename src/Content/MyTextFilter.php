@@ -1,6 +1,9 @@
 <?php
+
 namespace Asatir\TextFilter\src;
+
 use Michelf\MarkdownExtra;
+
 //require __DIR__ . "../../vendor/autoload.php";/**
 // * Filter and format text content.
 // *
@@ -15,7 +18,7 @@ class MyTextFilter
      *                     their respective handler.
      */
     private
-    $filters = [
+        $filters = [
         "bbcode" => "bbcode2html",
         "link" => "makeClickable",
         "markdown" => "markdown",
@@ -31,6 +34,7 @@ class MyTextFilter
      *
      * @return string with the formatted text.
      */
+
     public function parse($text, $filters)
     {
         foreach ($filters as $filter) {
@@ -43,7 +47,6 @@ class MyTextFilter
         }
         return $text;
     }
-
     /**
      * Helper, BBCode formatting converting to HTML.
      *
@@ -51,7 +54,8 @@ class MyTextFilter
      *
      * @return string the formatted text.
      */
-    public function bbcode2html($text)
+    public
+    function bbcode2html($text)
     {
         $search = [
             '/\[b\](.*?)\[\/b\]/is',
@@ -114,7 +118,7 @@ class MyTextFilter
      *
      * @return string the formatted text.
      */
-    public function nl2br($text) : string
+    public function nl2br($text): string
     {
         return nl2br($text);
     }

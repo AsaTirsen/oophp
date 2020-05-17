@@ -88,8 +88,7 @@ class Repository implements AppInjectableInterface
         $database = $dsnDetail[2];
         $login = $config["username"];
         $password = $config["password"];
-        $command = "$mysql -h{$host} -u{$login} -p{$password} $database < $file 2>&1";
-        $this->app->db->execute($command);
+        exec("$mysql -h{$host} -u{$login} -p{$password} $database < $file 2>&1");
     }
 
     public function viewPages()
@@ -177,5 +176,12 @@ EOD;
         }
         return false;
     }
+
+//    public function getFilter($route)
+//    {
+//        $this->app->db->connect();
+//        $sql = "SELECT `filter` FROM `content` WHERE `path`= ?";
+//        return $this->app->db->executeFetchAll($sql, [$route])[0];
+//    }
 }
 

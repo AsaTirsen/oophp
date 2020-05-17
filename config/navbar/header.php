@@ -99,8 +99,13 @@ return [
             "title" => "Testa filter",
         ],
         [
-            "text" => "Blogg",
+            "text" => "Bloggadmin",
             "url" => "content_management",
+            "title" => "Bloggadmin",
+        ],
+        [
+            "text" => "Blogg",
+            "url" => "content",
             "title" => "Blogg",
         ],
     ],
