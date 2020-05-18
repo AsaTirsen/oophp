@@ -82,12 +82,16 @@ class Repository implements AppInjectableInterface
         print_r($config);
         $dsnDetail = [];
         $file = ANAX_INSTALL_PATH . "/sql/content/setup.sql";
-        $mysql = "/usr/local/mysql-8.0.14-macos10.14-x86_64/bin/mysql";
         preg_match("/mysql:host=(.+);dbname=([^;.]+)/", $config["dsn"], $dsnDetail);
         $host = $dsnDetail[1];
         $database = $dsnDetail[2];
         $login = $config["username"];
         $password = $config["password"];
+        if ($_SERVER["SERVER_NAME"] === "www.student.bth.se") {
+            $mysql = "mysql:host=blu-ray.student.bth.se;dbname=asti18;";
+        } else {
+            $mysql = "/usr/local/mysql-8.0.14-macos10.14-x86_64/bin/mysql";
+        }
         exec("$mysql -h{$host} -u{$login} -p{$password} $database < $file 2>&1");
     }
 
@@ -176,12 +180,4 @@ EOD;
         }
         return false;
     }
-
-//    public function getFilter($route)
-//    {
-//        $this->app->db->connect();
-//        $sql = "SELECT `filter` FROM `content` WHERE `path`= ?";
-//        return $this->app->db->executeFetchAll($sql, [$route])[0];
-//    }
 }
-

@@ -8,7 +8,6 @@ use Asatir\Content\Repository;
 use Asatir\TextFilter\src\MyTextFilter;
 use function Anax\View\url;
 
-
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
 // use Anax\Route\Exception\InternalErrorException;
@@ -32,8 +31,7 @@ class BloggController implements AppInjectableInterface
     {
         $view = $this->app->view;
         $render = $this->app->page;
-        $request = $this->app->request;
-        $textfilter = New MyTextFilter();
+        $textfilter = new MyTextFilter();
         $content = new Repository();
         $content->setApp($this->app);
         $route = $this->app->request->getGet("route");
@@ -70,13 +68,14 @@ class BloggController implements AppInjectableInterface
                 $view->add("content/header", []);
                 $view->add("content/blog", $data);
                 return $render->render($data);
-
-
             default:
                 if (substr($route, 0, 5) === "blog/") {
                     $slug = substr($route, 5);
                     $title = "blogpost";
                     $viewcontent = $content->getBlogPost($slug);
+                    $filter = $viewcontent->filter;
+                    $filter = explode(",", $filter);
+                    $rendered = $textfilter->parse($viewcontent->data, $filter);
                     if (!$viewcontent) {
                         $data = [
                             $title = "404",
@@ -88,12 +87,16 @@ class BloggController implements AppInjectableInterface
                     $data = [
                         "title" => $title,
                         "content" => $viewcontent,
+                        "rendered" => $rendered
                     ];
                     $view->add("content/header", []);
                     $view->add("content/blogpost", $data);
                     return $render->render($data);
                 } else {
                     $viewcontent = $content->getPageContent($route);
+                    $filter = $viewcontent->filter;
+                    $filter = explode(",", $filter);
+                    $rendered = $textfilter->parse($viewcontent->data, $filter);
                     if (!$viewcontent) {
                         $data = [
                             $title = "404",
@@ -105,7 +108,8 @@ class BloggController implements AppInjectableInterface
                     $title = "page content";
                     $data = [
                         "title" => $title,
-                        "content" => $viewcontent
+                        "content" => $viewcontent,
+                        "rendered" => $rendered
                     ];
                     $view->add("content/header", []);
                     $view->add("content/page", $data);

@@ -1,6 +1,8 @@
 <?php
 namespace Asatir\TextFilter\src;
+
 use Michelf\MarkdownExtra;
+
 //require __DIR__ . "../../vendor/autoload.php";/**
 // * Filter and format text content.
 // *
@@ -8,14 +10,12 @@ use Michelf\MarkdownExtra;
 // * @SuppressWarnings(PHPMD.UnusedPrivateField)
 // */
 class MyTextFilter
-
 {
     /**
      * @var array $filters Supported filters with method names of
      *                     their respective handler.
      */
-    private
-    $filters = [
+    private $filters = [
         "bbcode" => "bbcode2html",
         "link" => "makeClickable",
         "markdown" => "markdown",
@@ -83,7 +83,7 @@ class MyTextFilter
      * @return string with formatted anchors.
      */
 
-    function makeClickable($text)
+    public function makeClickable($text)
     {
         return preg_replace_callback(
             '#\b(?<![href|src]=[\'"])https?://[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|/))#',
@@ -101,7 +101,7 @@ class MyTextFilter
      *
      * @return string as the formatted html text.
      */
-    function markdown($text)
+    public function markdown($text)
     {
         return MarkdownExtra::defaultTransform($text);
     }

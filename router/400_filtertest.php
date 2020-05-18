@@ -99,4 +99,3 @@ $app->router->get("nl2br", function () use ($app) {
 
     return $app->page->render($data);
 });
-

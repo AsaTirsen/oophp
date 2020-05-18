@@ -1,7 +1,6 @@
 <?php
 namespace Anax\View;
 
-
 /**
  * Make clickable links from URLs in text.
  *
