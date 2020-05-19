@@ -1,3 +1,4 @@
+<?php var_dump($_SERVER); ?>
 <form method="post" action="content_management/reset">
     <p>Vill du verkligen resetta hela databasen?</p>
     <input type="submit" name="doReset" value="Reset database">

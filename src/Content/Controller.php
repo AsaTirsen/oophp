@@ -241,7 +241,7 @@ class Controller implements AppInjectableInterface
 
     public function resetActionPost()
     {
-        error_log(print_r('reset'));
+        //error_log(print_r("reset"));
         $request = $this->app->request;
         $content = new Repository();
         $content->setApp($this->app);

@@ -79,7 +79,6 @@ class Repository implements AppInjectableInterface
     {
         $this->app->db->connect();
         $config = require(ANAX_INSTALL_PATH . "/config/database.php");
-        print_r($config);
         $dsnDetail = [];
         $file = ANAX_INSTALL_PATH . "/sql/content/setup.sql";
         preg_match("/mysql:host=(.+);dbname=([^;.]+)/", $config["dsn"], $dsnDetail);
@@ -88,7 +87,7 @@ class Repository implements AppInjectableInterface
         $login = $config["username"];
         $password = $config["password"];
         if ($_SERVER["SERVER_NAME"] === "www.student.bth.se") {
-            $mysql = "mysql:host=blu-ray.student.bth.se;dbname=asti18;";
+            $mysql = "/usr/bin/mysql";
         } else {
             $mysql = "/usr/local/mysql-8.0.14-macos10.14-x86_64/bin/mysql";
         }
